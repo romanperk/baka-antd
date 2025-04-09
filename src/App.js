@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ConfigProvider, Layout, theme as antdTheme } from "antd";
+import Dashboard from "./pages/Dashboard";
+import OrdersOverview from "./pages/OrdersOverview";
+import NewOrder from "./pages/NewOrder";
+import NavBar from "./components/NavBar/NavBar";
+import { OrderProvider } from "./context/ordersContext";
+
+const { Content } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ConfigProvider
+      theme={{
+        algorithm: antdTheme.darkAlgorithm,
+        token: {
+          colorBgBase: "#121212",
+          colorBgContainer: "#1e1e1e",
+        },
+      }}
+    >
+      <OrderProvider>
+        <BrowserRouter>
+          <Layout>
+            <NavBar />
+            <Content
+              style={{
+                marginTop: 4,
+                marginBottom: 4,
+              }}
+            >
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/orders" element={<OrdersOverview />} />
+                <Route path="/new-order" element={<NewOrder />} />
+              </Routes>
+            </Content>
+          </Layout>
+        </BrowserRouter>
+      </OrderProvider>
+    </ConfigProvider>
   );
 }
 
