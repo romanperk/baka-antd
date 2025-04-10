@@ -3,7 +3,7 @@ import { Form, Select } from "antd";
 
 const { Option } = Select;
 
-export const Step3 = ({ form, formData, handleChange }) => {
+export const Step3 = ({ formData, handleChange }) => {
   return (
     <div style={{ minHeight: 300 }}>
       <Form.Item

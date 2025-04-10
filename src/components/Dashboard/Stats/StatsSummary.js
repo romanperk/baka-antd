@@ -63,7 +63,7 @@ const StatsSummary = ({ orderStats }) => {
   return (
     <Row gutter={[24, 24]} style={{ marginBottom: 24 }}>
       {statsCards.map((card, index) => (
-        <Col xs={24} sm={12} md={6} key={index}>
+        <Col xs={12} md={6} key={index}>
           <StatsDetail
             icon={card.icon}
             title={card.title}

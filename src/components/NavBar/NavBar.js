@@ -1,17 +1,28 @@
 import React, { useState } from "react";
-import { Layout, Menu, Typography, Drawer, Button, Grid, theme } from "antd";
+import {
+  Layout,
+  Menu,
+  Typography,
+  Drawer,
+  Button,
+  Grid,
+  theme,
+  Switch,
+} from "antd";
 import {
   DashboardOutlined,
   ShoppingCartOutlined,
   OrderedListOutlined,
   MenuOutlined,
+  MoonOutlined,
+  SunOutlined,
 } from "@ant-design/icons";
 import { Link, useLocation } from "react-router-dom";
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
 
-const NavBar = () => {
+const NavBar = ({ darkMode, toggleDarkMode }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
   const screens = useBreakpoint();
@@ -37,16 +48,6 @@ const NavBar = () => {
 
   const selectedKey = location.pathname;
 
-  const logoStyle = {
-    fontWeight: 600,
-    background: "linear-gradient(45deg, #90caf9 30%, #f48fb1 90%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    margin: 0,
-    fontSize: "18px",
-    flexGrow: 1,
-  };
-
   return (
     <Header
       style={{
@@ -61,9 +62,24 @@ const NavBar = () => {
         boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
       }}
     >
-      <Typography.Title level={5} style={logoStyle}>
-        Order Management System
+      <Typography.Title
+        level={5}
+        style={{
+          flexGrow: 1,
+          margin: 0,
+          fontSize: "18px",
+        }}
+      >
+        Order Management
       </Typography.Title>
+
+      <Switch
+        checkedChildren={<SunOutlined />}
+        unCheckedChildren={<MoonOutlined />}
+        checked={darkMode}
+        onChange={toggleDarkMode}
+        style={{ marginRight: 16 }}
+      />
 
       {!screens.md ? (
         <>
@@ -77,12 +93,14 @@ const NavBar = () => {
             placement="right"
             onClose={() => setDrawerOpen(false)}
             open={drawerOpen}
+            style={{ backgroundColor: token.colorBgContainer }}
           >
             <Menu
               mode="vertical"
               selectedKeys={[selectedKey]}
               items={navItems}
               onClick={() => setDrawerOpen(false)}
+              style={{ border: "none" }}
             />
           </Drawer>
         </>
@@ -91,7 +109,7 @@ const NavBar = () => {
           mode="horizontal"
           selectedKeys={[selectedKey]}
           items={navItems}
-          style={{ flexGrow: 0, borderBottom: "none" }}
+          style={{ flexGrow: 0, border: "none" }}
         />
       )}
     </Header>

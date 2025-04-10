@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 
 export const OrdersTable = ({
+  downMd,
   orders,
   handleEditExistingOrder,
   getStatusColor,
@@ -75,7 +76,10 @@ export const OrdersTable = ({
         <div>
           <Typography.Text>{record.userName}</Typography.Text>
           <br />
-          <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+          <Typography.Text
+            type="secondary"
+            style={{ fontSize: 12, whiteSpace: "nowrap" }}
+          >
             {record.userEmail}
           </Typography.Text>
         </div>
@@ -186,36 +190,60 @@ export const OrdersTable = ({
     {
       title: "Actions",
       key: "actions",
-      render: (_, record) => (
-        <Space size="small">
-          <Tooltip title="Edit order">
+      render: (_, record) =>
+        downMd ? (
+          <Space size="small">
             <Button
               type="link"
               icon={<EditOutlined />}
               onClick={() => handleEditExistingOrder(record)}
             />
-          </Tooltip>
 
-          {record.status !== "completed" && (
-            <Tooltip title="Mark as completed">
+            {record.status !== "completed" && (
               <Button
                 type="link"
                 icon={<CheckCircleOutlined style={{ color: "green" }} />}
                 onClick={() => handleCompleteOrder(record.id)}
               />
-            </Tooltip>
-          )}
+            )}
 
-          <Tooltip title="Delete order">
             <Button
               type="link"
               danger
               icon={<DeleteOutlined />}
               onClick={() => handleDeleteClick(record)}
             />
-          </Tooltip>
-        </Space>
-      ),
+          </Space>
+        ) : (
+          <Space size="small">
+            <Tooltip title="Edit order">
+              <Button
+                type="link"
+                icon={<EditOutlined />}
+                onClick={() => handleEditExistingOrder(record)}
+              />
+            </Tooltip>
+
+            {record.status !== "completed" && (
+              <Tooltip title="Mark as completed">
+                <Button
+                  type="link"
+                  icon={<CheckCircleOutlined style={{ color: "green" }} />}
+                  onClick={() => handleCompleteOrder(record.id)}
+                />
+              </Tooltip>
+            )}
+
+            <Tooltip title="Delete order">
+              <Button
+                type="link"
+                danger
+                icon={<DeleteOutlined />}
+                onClick={() => handleDeleteClick(record)}
+              />
+            </Tooltip>
+          </Space>
+        ),
     },
   ];
 

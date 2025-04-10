@@ -37,26 +37,21 @@ export const StatsDetail = ({
 
       <Space style={{ marginBottom: 8, display: "flex", flexDirection: "row" }}>
         {icon}
-        <Typography.Text type="secondary" style={{ fontSize: 14 }}>
-          {title}
-        </Typography.Text>
+        <Typography.Text style={{ fontSize: 14 }}>{title}</Typography.Text>
       </Space>
 
       <Typography.Title level={3} style={{ margin: "0 0 8px" }}>
         {value}
       </Typography.Title>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <div style={{ display: "flex", gap: 8 }}>
         <Progress
           percent={progress}
           size="small"
           strokeColor={color}
-          showInfo={false}
-          style={{ flex: 1, height: 8 }}
+          style={{ flex: 1 }}
+          format={() => <span style={{ color }}>{percentage}</span>}
         />
-        <Typography.Text type="secondary" style={{ fontSize: 12 }}>
-          {percentage}
-        </Typography.Text>
       </div>
     </Card>
   );

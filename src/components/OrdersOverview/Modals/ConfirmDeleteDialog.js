@@ -12,6 +12,8 @@ export const ConfirmDeleteDialog = ({
       title="Delete Order"
       open={modalOpen}
       onCancel={handleCancelDelete}
+      width={600}
+      style={{ padding: "24px", margin: "0 auto" }}
       footer={[
         <Button key="cancel" onClick={handleCancelDelete}>
           Cancel

@@ -8,12 +8,15 @@ export const SubmittedStep = ({ submitted, loadingProgress }) => {
   return (
     <div
       style={{
-        minHeight: 300,
+        minHeight: 240,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
+        padding: "16px",
+        margin: "0 auto",
+        maxWidth: "90%",
       }}
     >
       <Space direction="vertical" align="center" size="large">

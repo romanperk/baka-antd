@@ -39,7 +39,7 @@ export const Step2 = ({ formData, handleChange }) => {
           },
           {
             type: "integer",
-            message: "Quantity must be a round number",
+            message: "Quantity must be an integer",
           },
         ]}
         initialValue={1}

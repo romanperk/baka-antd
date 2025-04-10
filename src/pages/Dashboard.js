@@ -12,7 +12,7 @@ const Dashboard = () => {
   const { token } = theme.useToken();
 
   return (
-    <div style={{ padding: "16px", maxWidth: "1200px", margin: "0 auto" }}>
+    <div style={{ padding: "24px", maxWidth: "1200px", margin: "0 auto" }}>
       <DashboardHeader theme={token} />
       <StatsSummary orderStats={orderStats} />
       <StatsCharts orderStats={orderStats} theme={token} downMd={downMd} />

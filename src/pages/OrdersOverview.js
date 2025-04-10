@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { OrdersTable } from "../components/OrdersOverview/OrdersTable";
 import { EditOrderModal } from "../components/OrdersOverview/Modals/EditOrderModal";
 import { ConfirmDeleteDialog } from "../components/OrdersOverview/Modals/ConfirmDeleteDialog";
+import { useBreakpoints } from "../hooks/useBreakpoints";
 
 const { Title } = Typography;
 
@@ -16,6 +17,7 @@ const OrdersOverview = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [orderToDelete, setOrderToDelete] = useState(null);
+  const { downMd } = useBreakpoints();
 
   const { token } = theme.useToken();
 
@@ -81,12 +83,10 @@ const OrdersOverview = () => {
   };
 
   return (
-    <div style={{ padding: "16px", maxWidth: "1200px", margin: "0 auto" }}>
+    <div style={{ padding: "24px", maxWidth: "1200px", margin: "0 auto" }}>
       <Card
         style={{
-          padding: 24,
-          borderRadius: token.borderRadiusLG,
-          background: token.colorBgContainer,
+          padding: 16,
         }}
       >
         <Row
@@ -95,7 +95,9 @@ const OrdersOverview = () => {
           style={{ marginBottom: 24 }}
         >
           <Col>
-            <Title level={3}>Orders</Title>
+            <Title level={3} style={{ margin: 0 }}>
+              Orders
+            </Title>
           </Col>
           <Col>
             <Button
@@ -103,12 +105,13 @@ const OrdersOverview = () => {
               icon={<PlusOutlined />}
               onClick={() => navigate("/new-order")}
             >
-              Add New Order
+              {downMd ? "Order" : "Add New Order"}
             </Button>
           </Col>
         </Row>
 
         <OrdersTable
+          downMd={downMd}
           orders={orders}
           handleEditExistingOrder={handleEditExistingOrder}
           handleCompleteOrder={handleCompleteOrder}
@@ -118,6 +121,7 @@ const OrdersOverview = () => {
         />
 
         <EditOrderModal
+          downMd={downMd}
           modalOpen={editModalOpen}
           handleCloseModal={handleCloseEditModal}
           editingOrder={editingOrder}

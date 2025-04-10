@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ConfigProvider, Layout, theme as antdTheme } from "antd";
+import { ConfigProvider, Layout, theme } from "antd";
 import Dashboard from "./pages/Dashboard";
 import OrdersOverview from "./pages/OrdersOverview";
 import NewOrder from "./pages/NewOrder";
@@ -10,26 +10,27 @@ import { OrderProvider } from "./context/ordersContext";
 const { Content } = Layout;
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
     <ConfigProvider
       theme={{
-        algorithm: antdTheme.darkAlgorithm,
-        token: {
-          colorBgBase: "#121212",
-          colorBgContainer: "#1e1e1e",
-        },
+        algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
       }}
     >
       <OrderProvider>
         <BrowserRouter>
           <Layout>
-            <NavBar />
             <Content
               style={{
-                marginTop: 4,
-                marginBottom: 4,
+                minHeight: `100dvh`,
               }}
             >
+              <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/orders" element={<OrdersOverview />} />

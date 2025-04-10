@@ -13,28 +13,24 @@ export const DashboardHeader = ({ theme }) => {
 
   return (
     <Card
-      bordered={false}
+      variant="borderless"
       style={{
         marginBottom: 24,
         padding: 24,
-        borderRadius: theme.borderRadius || 12,
         background: gradientBackground,
-        color: "#fff",
       }}
     >
       <Row justify="space-between" align="middle">
         <Col>
-          <Typography.Title level={3} style={{ color: "#fff", margin: 0 }}>
+          <Typography.Title level={3} style={{ margin: 0 }}>
             Dashboard Overview
           </Typography.Title>
         </Col>
         <Col>
-          <Typography.Text style={{ color: "rgba(255,255,255,0.75)" }}>
-            {currentDate}
-          </Typography.Text>
+          <Typography.Text>{currentDate}</Typography.Text>
         </Col>
       </Row>
-      <Typography.Text style={{ color: "rgba(255,255,255,0.75)" }}>
+      <Typography.Text>
         Welcome to your order management dashboard
       </Typography.Text>
     </Card>

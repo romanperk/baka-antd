@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NewOrderForm from "../components/NewOrder/Form/NewOrderForm";
-import { Button, Card, Col, Form, Row, Typography, theme } from "antd";
+import { Button, Card, Col, Form, Row, Typography } from "antd";
 import { OrderStepper } from "../components/NewOrder/Stepper/Stepper";
 import { useNavigate } from "react-router-dom";
 import { useBreakpoints } from "../hooks/useBreakpoints";
@@ -27,7 +27,6 @@ const NewOrder = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isFormValid, setIsFormValid] = useState(false);
   const [form] = Form.useForm();
-  const { token } = theme.useToken();
 
   const steps = [
     "Personal Details",
@@ -104,12 +103,10 @@ const NewOrder = () => {
 
   return (
     <Form form={form} layout="vertical" onFinish={handleSubmit}>
-      <div style={{ padding: "16px", maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ padding: "24px", maxWidth: "1200px", margin: "0 auto" }}>
         <Card
           style={{
-            padding: 24,
-            borderRadius: token.borderRadiusLG,
-            background: token.colorBgContainer,
+            padding: 16,
           }}
         >
           <Row
@@ -118,7 +115,9 @@ const NewOrder = () => {
             style={{ marginBottom: 24 }}
           >
             <Col>
-              <Title level={3}>New Order</Title>
+              <Title level={3} style={{ margin: 0 }}>
+                New Order
+              </Title>
             </Col>
             {activeStep === 0 && (
               <Col>
@@ -127,7 +126,7 @@ const NewOrder = () => {
                   icon={<ArrowLeftOutlined />}
                   onClick={() => navigate("/orders")}
                 >
-                  Table overview
+                  {downMd ? "Overview" : "Table Overview"}
                 </Button>
               </Col>
             )}

@@ -14,6 +14,7 @@ import {
 const { Option } = Select;
 
 export const EditOrderModal = ({
+  downMd,
   modalOpen,
   handleCloseModal,
   editingOrder,
@@ -29,9 +30,11 @@ export const EditOrderModal = ({
       onCancel={handleCloseModal}
       footer={null}
       width={600}
+      style={{ padding: "24px", margin: "0 auto" }}
+      centered={downMd ? true : false}
     >
       <Form layout="vertical">
-        <Row gutter={[16, 16]}>
+        <Row gutter={[16, 0]}>
           <Col xs={24} md={12}>
             <Form.Item label="Customer Name">
               <Input
@@ -143,7 +146,6 @@ export const EditOrderModal = ({
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginTop: 24,
           }}
         >
           <Button onClick={handleCloseModal}>Cancel</Button>
