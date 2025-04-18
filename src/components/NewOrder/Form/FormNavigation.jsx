@@ -20,7 +20,7 @@ export const FormNavigation = ({
       </Button>
       <Button
         type="primary"
-        color={isLastStep ? "purple" : "primary"}
+        color={"primary"}
         variant="solid"
         onClick={handleNext}
         disabled={!isFormValid}

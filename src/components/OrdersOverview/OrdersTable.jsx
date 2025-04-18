@@ -145,23 +145,11 @@ export const OrdersTable = ({
     {
       title: "Payment",
       key: "payment",
-      filters: [
-        { text: "Credit Card", value: "credit_card" },
-        { text: "PayPal", value: "paypal" },
-        { text: "Bank Transfer", value: "bank_transfer" },
-      ],
-      onFilter: (value, record) => record.paymentMethod.includes(value),
       render: (_, record) => record.paymentMethod.replace("_", " "),
     },
     {
       title: "Delivery",
       key: "delivery",
-      filters: [
-        { text: "Standard", value: "standard" },
-        { text: "Express", value: "express" },
-        { text: "Pickup", value: "pickup" },
-      ],
-      onFilter: (value, record) => record.deliveryMethod.includes(value),
       render: (_, record) => record.deliveryMethod.replace("_", " "),
     },
     {
