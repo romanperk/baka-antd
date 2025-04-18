@@ -126,7 +126,7 @@ const NewOrder = () => {
                   icon={<ArrowLeftOutlined />}
                   onClick={() => navigate("/orders")}
                 >
-                  {downMd ? "Overview" : "Table Overview"}
+                  {downMd ? "Overview" : "Orders Overview"}
                 </Button>
               </Col>
             )}
